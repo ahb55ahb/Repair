@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعمیرگاه تخصصی ماشین های چینی</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        :root {
+            --primary-black: #0a0a0a;
+            --secondary-black: #121212;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2d2d2d;
+            --light-gray: #e0e0e0;
+            --accent-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --white: #ffffff;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--primary-black);
+            color: var(--light-gray);
+            line-height: 1.8;
+            overflow-x: hidden;
+            padding-bottom: 60px;
+        }
+        header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--secondary-black);
+            border-bottom: 2px solid var(--accent-blue);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-left: 10px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--light-blue));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-gray);
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 0 15px rgba(30, 58, 138, 0.5);
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--light-gray);
+        }
+        .hero {
+            position: relative;
+            height: 500px;
+            background: url('img/backrah.png') center/cover no-repeat;
+            margin-bottom: 40px;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .hero-content {
+            text-align: center;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        .hero-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--light-gray);
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: var(--light-gray);
+        }
+        .services-btn {
+            display: inline-block;
+            padding: 10px 30px;
+            background: linear-gradient(to left, var(--accent-blue), var(--light-blue));
+            color: var(--light-gray);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(30, 58, 138, 0.4);
+        }
+        .services-btn:hover {
+            background: transparent;
+            color: var(--light-blue);
+            border-color: var(--light-blue);
+            box-shadow: 0 5px 20px rgba(30, 58, 138, 0.6);
+            transform: translateY(-3px);
+        }
+        .services {
+            padding: 50px 20px;
+            background-color: var(--secondary-black);
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+        .services h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            color: var(--light-gray);
+        }
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service-box {
+            background: linear-gradient(to bottom, var(--dark-gray), var(--secondary-black));
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--medium-gray);
+            text-align: center;
+            padding-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .service-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.4);
+            border-color: var(--accent-blue);
+        }
+        .service-box.active {
+            filter: grayscale(100%) brightness(40%);
+            transform: scale(0.98);
+        }
+        .service-img {
+            height: 200px;
+            background-color: var(--medium-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-blue);
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background-size: cover;
+            background-position: center;
+            transition: filter 0.3s ease;
+        }
+        .service-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--light-gray);
+            padding: 0 15px;
+        }
+        .contact-info {
+            padding: 50px 20px;
+            background-color: var(--secondary-black);
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-info h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            color: var(--light-gray);
+        }
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .contact-item {
+            background: linear-gradient(to bottom, var(--dark-gray), var(--medium-gray));
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--accent-blue);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+        .contact-item i {
+            font-size: 2.5rem;
+            color: var(--light-blue);
+            margin-bottom: 15px;
+        }
+        .contact-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--light-gray);
+        }
+        .contact-item p {
+            font-size: 1rem;
+            color: #a0a0a0;
+        }
+        .social-media {
+            padding: 50px 20px;
+            background-color: var(--secondary-black);
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .social-media h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--light-gray);
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .social-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--light-gray);
+            transition: all 0.3s ease;
+            width: 100px;
+        }
+        .social-icon:hover {
+            transform: translateY(-5px);
+        }
+        .social-icon i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .social-icon span {
+            font-size: 0.9rem;
+        }
+        .instagram i {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+        .whatsapp i {
+            background-color: #25D366;
+            color: white;
+        }
+        .telegram i {
+            background-color: #0088cc;
+            color: white;
+        }
+        .map i {
+            background-color: #34A853;
+            color: white;
+        }
+        footer {
+            padding: 25px 20px;
+            text-align: center;
+            background-color: var(--primary-black);
+            border-top: 1px solid var(--medium-gray);
+            font-size: 0.9rem;
+            color: #7d7d7d;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            .services-container {grid-template-columns: 1fr;}
+            .contact-details {grid-template-columns: 1fr;}
+            .social-icons {gap: 15px;}
+            .social-icon {width: 80px;}
+            .social-icon i {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+            .hero-content h1 {font-size: 1.8rem;}
+            .hero-content p {font-size: 1rem;}
+            .services h2, .contact-info h2, .social-media h3 {font-size: 1.8rem;}
+            .service-img {height: 160px;}
+        }
+        @media (max-width: 480px) {
+            .hero {height: 300px;}
+            .hero-content {margin: 20px auto;}
+            .services, .contact-info, .social-media {padding: 30px 15px; margin: 15px;}
+            .service-box {padding-bottom: 15px;}
+            .service-img {height: 140px; font-size: 2.5rem;}
+            .social-icon {width: 70px;}
+            .social-icon i {
+                width: 50px;
+                height: 50px;
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo-container">
+            <div class="logo">R</div>
+            <div class="logo-text">Rahimi</div>
+        </a>
+    </header>
+
+    <section class="hero"></section>
+
+    <div class="hero-content">
+        <h1>تعمیرگاه تخصصی ماشین های چینی</h1>
+        <p>ارائه بهترین خدمات تخصصی برای خودروهای چینی با بیش از چند سال تجربه</p>
+        <a href="#services" class="services-btn">خدمات ما</a>
+    </div>
+
+    <section id="services" class="services">
+    <h2>خدمات تخصصی ما</h2>
+    <div class="services-container">
+        <!-- سرویس 1 -->
+        <div class="service-box" data-img="img/repair.jpg">
+            <div class="service-img" style="background-image: url('img/repair.jpg');"></div>
+            <h3>تعمیرات موتور</h3>
+        </div>
+        
+        <!-- سرویس 2 -->
+        <div class="service-box" data-img="img/trans.jpg">
+            <div class="service-img" style="background-image: url('img/trans.jpg');"></div>
+            <h3>گیربکس های اتوماتیک</h3>
+        </div>
+        
+        <!-- سرویس 3 -->
+        <div class="service-box" data-img="img/suspan.jpg">
+            <div class="service-img" style="background-image: url('img/suspan.jpg');"></div>
+            <h3>جلوبندی</h3>
+        </div>
+        
+        <!-- سرویس 4 -->
+        <div class="service-box" data-img="img/diag.jpg">
+            <div class="service-img" style="background-image: url('img/diag.jpg');"></div>
+            <h3>دیاگ انواع ماشین های چینی</h3>
+        </div>
+        
+        <!-- سرویس 5 -->
+        <div class="service-box" data-img="img/paint.jpg">
+            <div class="service-img" style="background-image: url('img/paint.jpg');"></div>
+            <h3>نقاشی</h3>
+        </div>
+        
+        <!-- سرویس 6 -->
+        <div class="service-box" data-img="img/dent.jpg">
+            <div class="service-img" style="background-image: url('img/dent.jpg');"></div>
+            <h3>صافکاری و PDR</h3>
+        </div>
+    </div>
+</section>
+
+    <section class="contact-info">
+        <h2>راه های ارتباطی</h2>
+        <div class="contact-details">
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>آدرس</h3>
+                <p>اصفهان، آزاد راه شیراز، بعد از شماره گذاری، خلیج فارس 16</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <h3>ساعات کاری</h3>
+                <p>شنبه تا چهارشنبه: ۸ صبح تا ۶ عصر<br>پنجشنبه ها: ۸ صبح تا ۲ بعدازظهر</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <h3>تلفن</h3>
+                <p>09132311257<br>09910315723</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-media">
+        <h3>ما را در شبکه های اجتماعی دنبال کنید</h3>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/RahimiRepairShop" target="_blank" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+                <span>اینستاگرام</span>
+            </a>
+            <a href="https://wa.me/989132311257" target="_blank" class="social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                <span>واتساپ</span>
+            </a>
+            <a href="https://t.me/alirahimi313" target="_blank" class="social-icon telegram">
+                <i class="fab fa-telegram"></i>
+                <span>تلگرام</span>
+            </a>
+            <a href="https://maps.google.com/?q=35.715298,51.404484" target="_blank" class="social-icon map">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>نقشه</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>کلیه حقوق مادی و معنوی این سایت متعلق به تعمیرگاه تخصصی ماشین های چینی رحیمی می باشد. © ۱۴۰۲</p>
+    </footer>
+
+    <script>
+// کلیک روی سرویس‌ها برای حالت سیاه
+serviceBoxes.forEach(box => {
+    box.addEventListener('click', function() {
+        // ابتدا همه سرویس‌ها را به حالت عادی برگردان
+        serviceBoxes.forEach(b => {
+            b.classList.remove('active');
+            b.querySelector('p').style.display = 'none';
+            b.style.backgroundColor = ''; // بازگشت به رنگ اصلی
+        });
+        
+        // فقط سرویس کلیک شده را فعال کن
+        this.classList.toggle('active');
+        
+        // نمایش توضیحات سرویس
+        const description = this.querySelector('p');
+        if (this.classList.contains('active')) {
+            description.style.display = 'block';
+            this.style.backgroundColor = '#000000'; // سیاه کامل
+        } else {
+            description.style.display = 'none';
+            this.style.backgroundColor = ''; // بازگشت به رنگ اصلی
+        }
+    });
+});
+        // اسکرول نرم هنگام کلیک روی دکمه "خدمات ما"
+        document.querySelector('.services-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
